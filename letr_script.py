@@ -129,12 +129,30 @@ fig = plt.figure()
 plt.imshow(raw_img)
 for tp_id, line in enumerate(lines):
     y1, x1, y2, x2 = line # this is yxyx
+    y1 = y1.detach().numpy()
+    x1 = x1.detach().numpy()
+    y2 = y2.detach().numpy()
+    x2 = x2.detach().numpy()
     p1 = (x1, y1)
     p2 = (x2, y2)
+    print("x1 : ", x1)
+    print("x2 : ", x2)
+    print("y1 : ", y1)
+    print("y2 : ", y2)
+    
+    tmp0 = [p1[0], p2[0]]
+    tmp1 = [p1[1], p2[1]]
+
+    print("tmp0 : ", tmp0)
+    print("tmp1 : ", tmp1)
+    
+    print("type(tmp0) : ", type(tmp0))
+    print("type(x1) : ", type(x1))
+    print("type(y1) : ", type(y1))
     plt.plot([p1[0], p2[0]], [p1[1], p2[1]], linewidth=1.5, color='darkorange', zorder=1)
 plt.axis('off')
 
 
-#plt.savefig("../figures/demo_result.png", dpi=300, bbox_inches='tight', pad_inches = 0)
+#plt.savefig("../figures/demo_result_youpi.png", dpi=300, bbox_inches='tight', pad_inches = 0)
 #plt.close(fig)
 plt.show()
