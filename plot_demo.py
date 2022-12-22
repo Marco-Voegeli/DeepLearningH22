@@ -1,20 +1,12 @@
 # -*- coding: utf-8 -*-
 import cv2
-import matplotlib.pyplot as plt
+import pytlsd
+import pickle
 import numpy as np
 from random import shuffle
-import pytlsd
-from skimage.transform import pyramid_reduce
-import pickle
-import cv2
 import matplotlib.pyplot as plt
-import os
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras import datasets, layers, models
-from IPython.display import display
-from PIL import Image
 from letr_script import analyse_image_letr
+from skimage.transform import pyramid_reduce
 
 NOTDEF = -1024.0
 IMG_PATH = 'wireframe_dataset/v1.1/train/'
@@ -37,7 +29,7 @@ def get_thresholded_grad(resized_img):
     anglegrad[modgrad <= threshold] = NOTDEF
     return gx, gy, modgrad, anglegrad
 
-def analyze_image_pytlsd(image_path='pytlsd/resources/ai_001_001.frame.0000.color.jpg'):
+def analyze_image_pytlsd(image_path='pyt_lsd/resources/ai_001_001.frame.0000.color.jpg'):
     gray = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     flt_img = gray.astype(np.float64)
 
