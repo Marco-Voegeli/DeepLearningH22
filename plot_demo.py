@@ -110,27 +110,3 @@ def print_original_and_image_with_line(id):
     ax4.set_title('with LETR lines')
     
     plt.savefig(f'wireframe_dataset/demo_{id}.png')
-
-def create_pytlsd_image(id):
-    pytlsd_im = analyze_image_pytlsd(IMG_PATH + f'{id}.jpg')[0]
-    # print("Saving image", id)
-    Path(PYTLSD_PATH).mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(PYTLSD_PATH + f'{id}.jpg', pytlsd_im)
-
-def create_letr_image(id):
-    letr_im = analyse_image_letr(IMG_PATH, f'{id}.jpg')
-    # print("Saving image", id)
-    Path(LETR_PATH).mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(LETR_PATH + f'{id}.jpg', letr_im)
-
-def main():
-    with open(TRAIN_IMG_NAMES_PATH) as file:
-        # Not really efficent but does the job
-        lines = [line.rstrip() for line in file]
-        shuffle(lines)
-        ids = [line.split('.')[0] for line in lines]
-        for id in ids:
-            create_pytlsd_image(id)
-            # print_original_and_image_with_line(id)
-
-main()
