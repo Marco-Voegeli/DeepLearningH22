@@ -7,10 +7,13 @@ from random import shuffle
 import matplotlib.pyplot as plt
 from letr_script import analyse_image_letr
 from skimage.transform import pyramid_reduce
+from pathlib import Path
 
 NOTDEF = -1024.0
 IMG_PATH = 'wireframe_dataset/v1.1/train/'
 POINT_LINES_PATH = 'wireframe_dataset/pointlines/'
+LETR_PATH = 'wireframe_dataset/letr/'
+PYTLSD_PATH = 'wireframe_dataset/pytlsd/'
 TRAIN_IMG_NAMES_PATH = 'wireframe_dataset/v1.1/train.txt'
 
 def get_thresholded_grad(resized_img):
@@ -83,7 +86,7 @@ def print_original_and_image_with_line(id):
      cv2.line(im, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2, cv2.LINE_8)
 
     pytlsd_im = analyze_image_pytlsd(IMG_PATH + f'{id}.jpg')[0]
-
+    print(type(pytlsd_im))
     letr_im = analyse_image_letr(IMG_PATH, f'{id}.jpg')
 
     # Plot images
@@ -108,10 +111,26 @@ def print_original_and_image_with_line(id):
     
     plt.savefig(f'wireframe_dataset/demo_{id}.png')
 
-with open(TRAIN_IMG_NAMES_PATH) as file:
-    # Not really efficent but does the job
-    lines = [line.rstrip() for line in file][:10]
-    shuffle(lines)
-    ids = [line.split('.')[0] for line in lines]
-    for id in ids:
-        print_original_and_image_with_line(id)
+def create_pytlsd_image(id):
+    pytlsd_im = analyze_image_pytlsd(IMG_PATH + f'{id}.jpg')[0]
+    # print("Saving image", id)
+    Path(PYTLSD_PATH).mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(PYTLSD_PATH + f'{id}.jpg', pytlsd_im)
+
+def create_letr_image(id):
+    letr_im = analyse_image_letr(IMG_PATH, f'{id}.jpg')
+    # print("Saving image", id)
+    Path(LETR_PATH).mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(LETR_PATH + f'{id}.jpg', letr_im)
+
+def main():
+    with open(TRAIN_IMG_NAMES_PATH) as file:
+        # Not really efficent but does the job
+        lines = [line.rstrip() for line in file]
+        shuffle(lines)
+        ids = [line.split('.')[0] for line in lines]
+        for id in ids:
+            create_pytlsd_image(id)
+            # print_original_and_image_with_line(id)
+
+main()

@@ -1,3 +1,5 @@
 wireframe_dataset/line_mat/*
 wireframe_dataset/pointlines/*
 wireframe_dataset/v1.1/*
+wireframe_dataset/*
+__pycache__/*

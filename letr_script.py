@@ -143,7 +143,6 @@ def analyse_image_letr(img_path, img_name):
 
     analyse_image_loc = LETR_PATH + img_name
 
-    plt.savefig(analyse_image_loc, dpi=300, bbox_inches='tight', pad_inches = 0)
     plt.close(fig)
 
     return plt.imread(analyse_image_loc)
