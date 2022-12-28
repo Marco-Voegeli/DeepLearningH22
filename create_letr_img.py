@@ -1,7 +1,7 @@
 from pathlib import Path
 from random import shuffle
 from letr_script import analyse_image_letr
-from plot_demo import IMG_PATH, LETR_PATH, TRAIN_IMG_NAMES_PATH, create_letr_image
+from plot_demo import IMG_PATH, LETR_PATH, TRAIN_IMG_NAMES_PATH
 import cv2
 
 def create_letr_image(id):

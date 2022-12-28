@@ -10,7 +10,7 @@
 echo "Running LETR with $SLURM_NTASKS tasks, $SLURM_CPUS_PER_TASK cores per task, $SLURM_MEM_PER_CPU memory per core"
 
 
-python3 letr_script.py
+python3 create_letr_img.py
 
 
 echo "Done rendering"
