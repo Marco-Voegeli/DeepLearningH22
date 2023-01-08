@@ -70,9 +70,9 @@ if '__main__' == __name__:
     with open(TRAIN_IMG_NAMES_PATH) as file:
         # Not really efficent but does the job
         lines = [line.rstrip() for line in file]
-        shuffle(lines)
-        unexisting = ['00030043', '00030077', '00030078']
         ids = [line.split('.')[0] for line in lines]
+        shuffle(ids)
+
         counter = 0
         NB_OF_DEMO_IMAGES = 20
         for id in ids:

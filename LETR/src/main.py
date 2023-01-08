@@ -18,12 +18,12 @@ from models import build_model
 from args import get_args_parser
 
 def main(args):
-    utils.init_distributed_mode(args)
-    print("git:\n  {}\n".format(utils.get_sha()))
-
-    output_dir = Path(args.output_dir)
 
     print(args)
+    print("git:\n  {}\n".format(utils.get_sha()))
+    utils.init_distributed_mode(args)
+    output_dir = Path(args.output_dir)
+
 
     device = torch.device(args.device)
 

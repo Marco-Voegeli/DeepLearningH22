@@ -142,7 +142,7 @@ def analyse_image_letr(img_path, img_name):
     plt.axis('off')
 
     analyse_image_loc = LETR_PATH + img_name
-    plt.savefig(analyse_image_loc, bbox_inches='tight', pad_inches=0)
+    plt.savefig(analyse_image_loc) #, bbox_inches='tight', pad_inches=0)
     plt.close(fig)
 
     return plt.imread(analyse_image_loc)
